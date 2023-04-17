@@ -7,7 +7,7 @@ const bcrypt = require("bcryptjs");
 router.post("/signUp", async (req, res) => {
     console.log(req.body);
     // console.log("Hello1");
-    const { fname, email, mobile, password, cpassword } = req.body;
+    const { fname, email, mobile, password, cpassword, UserType } = req.body;
 
     if (!fname || !email || !mobile || !password || !cpassword) {
         res.status(422).json({ error: "fill the user data" });
@@ -24,7 +24,7 @@ router.post("/signUp", async (req, res) => {
             res.status(422).json({ error: "password and cpassword not match" })
         } else {
             const finaluser = new USER({
-                fname, email, mobile, password, cpassword
+                fname, email, mobile, password, cpassword, UserType
             });
 
             //password hashing using bcryptJs
